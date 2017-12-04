@@ -228,6 +228,11 @@ static GRSurface* fbdev_init(minui_backend* backend) {
         }
     }
 
+#ifdef TW_FORCE_GGL_PIXEL_FORMAT_RGBX_8888
+    printf("setting GGL_PIXEL_FORMAT_RGBX_8888(FORCED)\n");
+    gr_framebuffer[0].format = GGL_PIXEL_FORMAT_RGBX_8888;
+#endif
+
     // Drawing directly to the framebuffer takes about 5 times longer.
     // Instead, we will allocate some memory and draw to that, then
     // memcpy the data into the framebuffer later.
